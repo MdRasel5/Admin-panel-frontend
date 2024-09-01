@@ -1,64 +1,76 @@
 import { FaMagnifyingGlass, FaCircleUser } from "react-icons/fa6";
-import { IoNotifications } from "react-icons/io5";
-import { MdEmail } from "react-icons/md";
+import { IoMoonOutline } from "react-icons/io5";
+import { IoIosNotificationsOutline } from "react-icons/io";
+import { AiOutlineMessage } from "react-icons/ai";
+import { CiUser } from "react-icons/ci";
+
 import { useNavigate } from "react-router-dom";
 
 function TopBar({ darkMode }) {
   const inputStyles = {
-    borderBottomColor: darkMode ? '#ffffff' : '#000000',
+    borderBottomColor: darkMode ? "#ffffff" : "#000000",
   };
   const navigate = useNavigate();
 
   const handleLoginClick = () => {
-    navigate('/login');
+    navigate("/login");
   };
 
   const handleMailIconClick = () => {
-    window.location.href = 'https://mail.google.com';
+    window.location.href = "https://mail.google.com";
   };
 
   return (
-    <div className="fixed top-0 w-[80%] z-50 h-16 bg-white dark:bg-[#51577d] px-10 flex justify-between items-center border-b-2 border-gray-600 dark:border-[#51577d]">
-      <div className="flex items-center text-gray-200">
-        <FaMagnifyingGlass
-          size={20}
-          style={{
-            color: darkMode ? '#ffffff' : '#000000',
-          }}
-        />
+    <div className="fixed top-0 w-[80%] z-50 h-20 bg-white dark:bg-[#51577d] px-10 flex justify-between items-center border-b-2 border-gray-600 dark:border-[#51577d]">
+      {/* header-left */}
+      <form className="relative w-96 border-solid border border-border-color p-3 rounded-xl">
         <input
           type="text"
-          placeholder="Search"
-          className="ms-2 border-b outline-none dark:bg-transparent placeholder-gray-700 text-black dark:text-white"
+          placeholder="Search here..."
+          className="ms-2 w-full border-none outline-none dark:bg-transparent text-gray-400 placeholder-gray-400 text-black dark:text-white"
           style={inputStyles}
         />
-      </div>
-      <div className="flex text-2xl text-gray-200">
-        <IoNotifications
-          className="cursor-pointer mx-2"
-          style={{
-            color: darkMode ? '#ffffff' : '#000000',
-          }}
-        />
-        <MdEmail
-          className="cursor-pointer mx-2"
-          style={{
-            color: darkMode ? '#ffffff' : '#000000',
-          }}
-          onClick={handleMailIconClick} // Move onClick here
-        />
-        <FaCircleUser
-          className="cursor-pointer mx-2"
-          style={{
-            color: darkMode ? '#ffffff' : '#000000',
-          }}
-        />
-      </div>
-
-      <div>
-        <button className="cursor-pointer" onClick={handleLoginClick} style={{ 'color': 'black', 'font-weight': 'bold' }}>
-          Login
+        <button type="submit" className="absolute right-3 top-3">
+          <FaMagnifyingGlass
+            size={20}
+            className="text-gray-700 hover:text-primary transition-all"
+          />
         </button>
+      </form>
+
+      {/* header-right */}
+      <div className="header-right">
+        <div className="flex text-2xl text-gray-200">
+          <IoMoonOutline className="cursor-pointer bg-secondary text-black rounded-full h-9 w-9 p-2" />
+          <IoIosNotificationsOutline
+            className="cursor-pointer bg-secondary text-black rounded-full h-9 w-9 p-2"
+            style={{
+              color: darkMode ? "#ffffff" : "#000000",
+            }}
+          />
+          <AiOutlineMessage
+            className="cursor-pointer bg-secondary text-black rounded-full h-9 w-9 p-2"
+            style={{
+              color: darkMode ? "#ffffff" : "#000000",
+            }}
+            // onClick={handleMailIconClick}
+          />
+          <CiUser
+            className="cursor-pointer bg-secondary text-black rounded-full h-9 w-9 p-2"
+            style={{
+              color: darkMode ? "#ffffff" : "#000000",
+            }}
+          />
+        </div>
+        {/* <div>
+          <button
+            className="cursor-pointer"
+            onClick={handleLoginClick}
+            style={{ color: "black", "font-weight": "bold" }}
+          >
+            Login
+          </button>
+        </div> */}
       </div>
     </div>
   );
